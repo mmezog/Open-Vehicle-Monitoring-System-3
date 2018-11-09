@@ -324,6 +324,7 @@ String fieldDef = // ID (hex), startBit, endBit, resolution, offset (aplied BEFO
                         + "7ec,24,39,2.083333333,0,2,%,222002,622002,e5\n" // SOC
                         + "7ec,24,39,0.01,0,2,V,222005,622005,ff\n" // 12V battery voltage
                         + "7ec,24,47,1,0,0,km,222006,622006,ff\n" // Odometer
+												+" 7ec,31,31,1,0,0,,22200E,62200E,ff,Key state,0:key off;1:key on\n" //
                         + "7ec,24,31,0.5,0,1,A,223028,623028,ff\n" // 14V current?
                         + "7ec,24,39,0.5,0,2,V,223203,623203,ff\n" // HV Battery voltage
                         + "7ec,24,39,0.25,32768,2,A,223204,623204,ff\n" // HV Battery current
