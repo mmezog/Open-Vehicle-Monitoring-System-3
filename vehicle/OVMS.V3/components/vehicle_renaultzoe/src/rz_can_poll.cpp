@@ -42,7 +42,7 @@ void OvmsVehicleRenaultZoe::IncomingPollReply(canbus* bus, uint16_t type, uint16
 			break;
 		case 0x200e:
 			{
-			// 7ec,24,24,1,0,0,km,222006,622006,ff\n" // 
+			// 7ec,31,31,1,0,0,,22200E,62200E,ff,Key state,0:key off;1:key on\n" //
 			if (CAN_BYTE(0) && 0x01 == 0x01)
 				{
 				vehicle_renaultzoe_car_on(true);
