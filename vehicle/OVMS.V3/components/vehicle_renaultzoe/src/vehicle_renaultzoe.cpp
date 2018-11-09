@@ -205,9 +205,9 @@ void OvmsVehicleRenaultZoe::vehicle_renaultzoe_car_on(bool isOn)
 	else if(!isOn && StdMetrics.ms_v_env_on->AsBool())
 		{
 		// Car is OFF
-		StdMetrics.ms_v_env_on->SetValue( isOn );
-		StdMetrics.ms_v_env_awake->SetValue( isOn );
-		StdMetrics.ms_v_pos_speed->SetValue( 0 );
+		StdMetrics.ms_v_env_on->SetValue(isOn);
+		StdMetrics.ms_v_env_awake->SetValue(isOn);
+		StdMetrics.ms_v_pos_speed->SetValue(0);
 		PollSetState(0);
 		}
 }
