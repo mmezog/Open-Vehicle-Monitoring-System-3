@@ -54,16 +54,18 @@ static const char *TAG = "v-renaultzoe";
 
 static const OvmsVehicle::poll_pid_t vehicle_renaultzoe_polls[] =
 	{
-	{ 0x7e4, 0x7ec, VEHICLE_POLL_TYPE_OBDIIEXTENDED, 0x2002, {  10, 10,  10 } },  // SOC
-	{ 0x7e4, 0x7ec, VEHICLE_POLL_TYPE_OBDIIEXTENDED, 0x2006, {  10, 10,  10 } },  // Odometer
-	{ 0x7e4, 0x7ec, VEHICLE_POLL_TYPE_OBDIIEXTENDED, 0x3203, {  10, 10,  10 } },  // Battery Voltage
-	{ 0x7e4, 0x7ec, VEHICLE_POLL_TYPE_OBDIIEXTENDED, 0x3204, {  10, 10,  10 } },  // Battery Current
-	{ 0x7e4, 0x7ec, VEHICLE_POLL_TYPE_OBDIIEXTENDED, 0x3028, {  10, 10,  10 } },  // 12Battery Current
+	{ 0x7e4, 0x7ec, VEHICLE_POLL_TYPE_OBDIIEXTENDED, 0x2001, { 300, 10,  10 } },  // Battery Rack Temp.
+	{ 0x7e4, 0x7ec, VEHICLE_POLL_TYPE_OBDIIEXTENDED, 0x2002, { 300, 10,  10 } },  // SOC
+	{ 0x7e4, 0x7ec, VEHICLE_POLL_TYPE_OBDIIEXTENDED, 0x2006, {   0, 10,   0 } },  // Odometer
+	{ 0x7e4, 0x7ec, VEHICLE_POLL_TYPE_OBDIIEXTENDED, 0x2005, { 300, 60,  60 } },  // 12V Battery Voltage
+	{ 0x7e4, 0x7ec, VEHICLE_POLL_TYPE_OBDIIEXTENDED, 0x200e, {  10, 10,   0 } },  // Key On/Off
+	{ 0x7e4, 0x7ec, VEHICLE_POLL_TYPE_OBDIIEXTENDED, 0x3028, { 300, 10,  60 } },  // DCDC Load (12V Battery Current ?)
+	{ 0x7e4, 0x7ec, VEHICLE_POLL_TYPE_OBDIIEXTENDED, 0x3203, { 300, 10,  10 } },  // HV LVC voltage measure (HV Battery Voltage)
+	{ 0x7e4, 0x7ec, VEHICLE_POLL_TYPE_OBDIIEXTENDED, 0x3204, { 300, 10,  10 } },  // HV LVC currente mesasure (HV Battery Current)
 	// 7ec,24,39,.005,0,0,kwh,22320C,62320C,ff,Available discharge Energy
 	{ 0x7e4, 0x7ec, VEHICLE_POLL_TYPE_OBDIIEXTENDED, 0x320C, {  10, 10,  10 } },  // Available discharge Energy
 	// 7ec,30,31,1,0,0,,223332,623332,ff,Electrical Machine functionning Authorization,0:Not used;1:Inverter Off;2:Inverter On\n" //
 	//{ 0x7e4, 0x7ec, VEHICLE_POLL_TYPE_OBDIIEXTENDED, 0x3332, {  10, 10,  10 } },  //  Inverter Off: 1; Inverter On: 2
-	//{ 0x7e4, 0x7ec, VEHICLE_POLL_TYPE_OBDIIEXTENDED, 0x2005, {  10, 10,  10 } },  // 12Battery Voltage
 	//{ 0x7e4, 0x7ec, VEHICLE_POLL_TYPE_OBDIIEXTENDED, 0x3206, {  10, 10,  10 } },  // Battery SOH
 	{ 0x7e4, 0x7ec, VEHICLE_POLL_TYPE_OBDIIEXTENDED, 0x33dc, {  10, 10,  10 } },  // Consumed Domnestic Engergy
 	//{ 0x75a, 0x77e, VEHICLE_POLL_TYPE_OBDIIEXTENDED, 0x3018, {  10, 10,  10 } },  // DCDC Temp
@@ -169,10 +171,10 @@ void OvmsVehicleRenaultZoe::ConfigChanged(OvmsConfigParam* param)
 	
 	// Instances:
 	//  x.rz
-	//  batteryCapacity   Battery capacity in wH (Default: 270000)
+	//  batteryCapacity   Battery capacity in wH (Default: 260000) (Zoe Q210,R240 26kWh raw, Q210 22kWh, R240 23,3kWh usable)
 	//  suffsoc           Sufficient SOC [%] (Default: 0=disabled)
 	//  suffrange         Sufficient range [km] (Default: 0=disabled)
-	//  maxrange          Maximum ideal range at 20 °C [km] (Default: 160)
+	//  maxrange          Maximum ideal range at 20 °C [km] (Default: 140)
 	//
 	//  canwrite          Bool: CAN write enabled (Default: no)
 	//  autoreset         Bool: SEVCON reset on error (Default: yes)
