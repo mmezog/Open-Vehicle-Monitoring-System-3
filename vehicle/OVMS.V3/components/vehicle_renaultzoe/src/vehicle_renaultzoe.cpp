@@ -221,14 +221,6 @@ void OvmsVehicleRenaultZoe::Ticker1(uint32_t ticker)
 	StdMetrics.ms_v_bat_voltage->SetValue( rz_bat_voltage );
 	StdMetrics.ms_v_bat_current->SetValue( rz_bat_current );
 	StdMetrics.ms_v_bat_power->SetValue(rz_bat_voltage * rz_bat_current/1000);
-/**
- *  Sets the charge metrics
- */
-void OvmsVehicleRenaultZoe::SetChargeMetrics(float voltage, float current, float climit, bool chademo)
-	{
-  StdMetrics.ms_v_charge_voltage->SetValue( voltage, Volts );
-  StdMetrics.ms_v_charge_current->SetValue( current, Amps );
-  StdMetrics.ms_v_charge_climit->SetValue( climit, Amps);
 	}
 
 class OvmsVehicleRenaultZoeInit
