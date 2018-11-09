@@ -152,8 +152,6 @@ class OvmsVehicleRenaultZoe : public OvmsVehicle
 
 #define SQR(n) ((n)*(n))
 #define ABS(n) (((n) < 0) ? -(n) : (n))
-#define MIN(n,m) ((n) < (m) ? (n) : (m))
-#define MAX(n,m) ((n) > (m) ? (n) : (m))
 #define LIMIT_MIN(n,lim) ((n) < (lim) ? (lim) : (n))
 #define LIMIT_MAX(n,lim) ((n) > (lim) ? (lim) : (n))
 
