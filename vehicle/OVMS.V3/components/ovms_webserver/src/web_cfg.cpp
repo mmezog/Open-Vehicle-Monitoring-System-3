@@ -251,7 +251,7 @@ void OvmsWebServer::HandleStatus(PageEntry_t& p, PageContext_t& c)
  */
 void OvmsWebServer::HandleCommand(PageEntry_t& p, PageContext_t& c)
 {
-  std::string command = c.getvar("command");
+  std::string command = c.getvar("command", 2000);
 
   // Note: application/octet-stream instead of text/plain is a workaround for an *old*
   //  Chrome/Webkit bug: chunked text/plain is always buffered for the first 1024 bytes
@@ -271,7 +271,7 @@ void OvmsWebServer::HandleCommand(PageEntry_t& p, PageContext_t& c)
  */
 void OvmsWebServer::HandleShell(PageEntry_t& p, PageContext_t& c)
 {
-  std::string command = c.getvar("command");
+  std::string command = c.getvar("command", 2000);
   std::string output;
 
   if (command != "")
@@ -707,8 +707,7 @@ void OvmsWebServer::HandleCfgModem(PageEntry_t& p, PageContext_t& c)
   c.fieldset_start("Features");
   c.input_checkbox("Enable SMS", "enable_sms", enable_sms);
   c.input_checkbox("Enable GPS", "enable_gps", enable_gps);
-  c.input_checkbox("Use GPS time", "enable_gpstime", enable_gpstime,
-    "<p>Note: GPS &amp; GPS time support can be left disabled, vehicles will activate them as needed</p>");
+  c.input_checkbox("Use GPS time", "enable_gpstime", enable_gpstime);
   c.fieldset_end();
 
   c.hr();
@@ -1373,8 +1372,7 @@ void OvmsWebServer::HandleCfgAutoInit(PageEntry_t& p, PageContext_t& c)
     c.input_select_option(kv.first.c_str(), kv.first.c_str(), (kv.first == wifi_ssid_client));
   c.input_select_end();
 
-  c.input_checkbox("Start modem", "modem", modem,
-    "<p>Note: a vehicle module may start the modem as necessary, independantly of this option.</p>");
+  c.input_checkbox("Start modem", "modem", modem);
 
   c.input_select_start("Vehicle type", "vehicle_type");
   c.input_select_option("&mdash;", "", vehicle_type.empty());
